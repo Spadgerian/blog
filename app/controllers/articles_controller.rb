@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   skip_forgery_protection 
-  
+
   def show
     @article = Article.find(params[:id])
   end
@@ -22,9 +22,12 @@ class ArticlesController < ApplicationController
     redirect_to @article  # Redirect to show action
     
     # Set the require and permit params
-    private
-      def article_params
-        params.require(:article).permit(:title, :text)
-      end
+    
   end
+
+  private
+    def article_params
+      params.require(:article).permit(:title, :text)
+    end
+
 end
