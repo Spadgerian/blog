@@ -10,6 +10,7 @@ class ArticlesController < ApplicationController
   end
   
   def new
+    @article = Article.new
   end
 
   def create
@@ -21,13 +22,14 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)  # params defined below
     # A for Article is class name. new instantiates a new instance
 
-    @article.save  # Save in db
-    redirect_to @article  # Redirect to show action
-    
-    # Set the require and permit params
-    
+    if @article.save  # Save in db
+      redirect_to @article  # Redirect to show action
+    else
+      render 'new'
+    end
   end
 
+  # Set the require and permit params
   private
     def article_params
       params.require(:article).permit(:title, :text)
