@@ -13,6 +13,10 @@ class ArticlesController < ApplicationController
     @article = Article.new
   end
 
+  def edit
+    @article = Article.find(params[:id])
+  end
+
   def create
     # Test without db
     # render plain: params[:article].inspect
